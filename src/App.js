@@ -11,17 +11,20 @@ class App extends Component {
     fetch('http://localhost:3004/contacts')
       .then(response => response.json())
       .then(contacts => this.setState({
-        contacts: [
-          {
-            firstName: contacts.firstName,
-            lastName: contacts.lastName,
-            phoneNumber: contacts.phoneNumber,
-            emailAddress: contacts.emailAddress
-          }
-        ]
+        contacts: contacts
       }));
   }
 
+  addContact = (firstName, lastName, phoneNumber, email) => {
+    this.setState({
+      contacts: this.state.contacts.concat({
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        email: email
+      })
+    })
+  }
 
 
   render() {
@@ -31,16 +34,18 @@ class App extends Component {
         <input type={'text'} placeholder={'last name'} />
         <input type={'number'} placeholder={'phone number'} />
         <input type={'email'} placeholder={'email address'} />
-        <button>Add</button>
+        <button onClick={() => this.addContact(this.props)}>Add</button>
         <ul>
           {
             this.state.contacts.map(
               contact => (
                 <li>
-                  first name: {contact.firstName}
-                  last name: {this.state.contacts.lastName}
-                  phone number: {this.phoneNumber}
-                  email address: {this.emailAddress}
+                  first name: {contact.firstName},
+                  last name: {contact.lastName},
+                  phone number: {contact.phoneNumber},
+                  email address: {contact.email}
+                  <button>x</button>
+                  <button>edit</button>
                 </li>
               )
             )
