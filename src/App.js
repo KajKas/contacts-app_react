@@ -4,6 +4,10 @@ import './App.css';
 class App extends Component {
 
   state = {
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    email: '',
     contacts: []
   }
 
@@ -28,21 +32,23 @@ class App extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.props.addContact(this.state.firstName, this.state.lastName, this.state.phoneNumber, this.state.email)
-
+    this.addContact(
+      this.state.firstName,
+      this.state.lastName,
+      this.state.phoneNumber,
+      this.state.email
+    )
   }
-
-
 
   render() {
     return (
       <div className="App">
         <form onSubmit={this.handleSubmit}>
-          <input type='text' placeholder='first name' value={this.state.firstName} onChange={(event) => this.setState({firstName: event.target.value})}/>
-          <input type='text' placeholder='last name' value={this.state.lastName} onChange={(event) => this.setState({lastName: event.target.value})}/>
-          <input type='number' placeholder='phone number' value={this.state.phoneNumber} onChange={(event) => this.setState({phoneNumber: event.target.value})}/>
-          <input type='email' placeholder='email address' value={this.state.email} onChange={(event) => this.setState({email: event.target.value})}/>
-          <button onClick={() => this.addContact(this.props.firstName, this.props.lastName, this.props.phoneNumber, this.props.email)}>Add</button>
+          <input type='text' placeholder='first name' onChange={(event) => this.setState({firstName: event.target.value})}/>
+          <input type='text' placeholder='last name' onChange={(event) => this.setState({lastName: event.target.value})}/>
+          <input type='number' placeholder='phone number' onChange={(event) => this.setState({phoneNumber: event.target.value})}/>
+          <input type='email' placeholder='email address' onChange={(event) => this.setState({email: event.target.value})}/>
+          <button>Add</button>
         </form>
         <ul>
           {
