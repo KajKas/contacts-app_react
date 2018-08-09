@@ -34,7 +34,7 @@ class App extends Component {
         <input type='text' placeholder='last name' />
         <input type='number' placeholder='phone number' />
         <input type='email' placeholder='email address' />
-        <button onClick={() => this.addContact(this.props.firstName, 'Kreft', '666', 'ddd@vb.pl')}>Add</button>
+        <button onClick={() => this.addContact(this.props.firstName, 'dupa', '666', 'ddd@vb.pl')}>Add</button>
         <ul>
           {
             this.state.contacts.map(
