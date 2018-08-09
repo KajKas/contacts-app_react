@@ -1,0 +1,39 @@
+{
+  "contacts": [
+    {
+      "firstName": "Kaj",
+      "lastName": "Kas",
+      "phoneNumber": "666",
+      "email": "dupa@dupa.pl",
+      "id": 1
+    },
+    {
+      "firstName": "ja",
+      "lastName": "ty ",
+      "phoneNumber": "33333",
+      "email": "ddd@asd.pl",
+      "id": 2
+    },
+    {
+      "firstName": "ddd",
+      "lastName": "aaa",
+      "phoneNumber": "666",
+      "email": "asd@asd.pl",
+      "id": 3
+    },
+    {
+      "firstName": "Bruce",
+      "lastName": "Banner",
+      "phoneNumber": "11111",
+      "email": "hulk@smash",
+      "id": 4
+    },
+    {
+      "firstName": "Tony",
+      "lastName": "Stark",
+      "phoneNumber": "000000",
+      "email": "iron@man",
+      "id": 5
+    }
+  ]
+}
