@@ -30,6 +30,20 @@ class App extends Component {
     })
   }
 
+  // componentDidUpdate() {
+  //     fetch(
+  //       'http://localhost:3004/contacts', {
+  //         method: 'POST',
+  //         body: JSON.stringify(contact),
+  //         headers:{
+  //           'Content-Type': 'application/json'
+  //         }
+  //       }).then(function () {
+  //
+  //     })
+  //   }
+  // }
+
   handleSubmit = event => {
     event.preventDefault()
     this.addContact(
