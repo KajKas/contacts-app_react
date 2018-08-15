@@ -28,21 +28,26 @@ class App extends Component {
         email: email
       })
     })
-  }
+    fetch(
+      'http://localhost:3004/contacts', {
+        method: 'POST',
+        body: JSON.stringify(
+          this.setState({
+            contacts: this.state.contacts.concat({
+              firstName: firstName,
+              lastName: lastName,
+              phoneNumber: phoneNumber,
+              email: email
+            })
+          })
+        ),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then(function () {
 
-  // componentDidUpdate() {
-  //     fetch(
-  //       'http://localhost:3004/contacts', {
-  //         method: 'POST',
-  //         body: JSON.stringify(contact),
-  //         headers:{
-  //           'Content-Type': 'application/json'
-  //         }
-  //       }).then(function () {
-  //
-  //     })
-  //   }
-  // }
+    })
+  }
 
   handleSubmit = event => {
     event.preventDefault()
