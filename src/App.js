@@ -12,6 +12,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getContacts()
+  }
+
+  getContacts() {
     fetch('http://localhost:3004/contacts')
       .then(response => response.json())
       .then(contacts => this.setState({
@@ -20,32 +24,22 @@ class App extends Component {
   }
 
   addContact = (firstName, lastName, phoneNumber, email) => {
-    this.setState({
-      contacts: this.state.contacts.concat({
-        firstName: firstName,
-        lastName: lastName,
-        phoneNumber: phoneNumber,
-        email: email
-      })
-    })
+    const sync = () => this.getContacts()
+
     fetch(
       'http://localhost:3004/contacts', {
         method: 'POST',
-        body: JSON.stringify(
-          this.setState({
-            contacts: this.state.contacts.concat({
-              firstName: firstName,
-              lastName: lastName,
-              phoneNumber: phoneNumber,
-              email: email
-            })
-          })
-        ),
+        body: JSON.stringify({
+          firstName: firstName,
+          lastName: lastName,
+          phoneNumber: phoneNumber,
+          email: email
+        }),
         headers:{
           'Content-Type': 'application/json'
         }
       }).then(function () {
-
+        sync()
     })
   }
 
