@@ -17,15 +17,23 @@ class App extends Component {
 
   getContacts() {
     fetch('http://localhost:3004/contacts')
-      .then(response => response.json())
-      .then(contacts => this.setState({
-        contacts: contacts
-      }));
+    .then(response => response.json())
+    .then(contacts => this.setState({
+      contacts: contacts
+    }));
+  }
+
+  clearInputs() {
+    this.setState({
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      email: ''
+    })
   }
 
   addContact = (firstName, lastName, phoneNumber, email) => {
     const sync = () => this.getContacts()
-
     fetch(
       'http://localhost:3004/contacts', {
         method: 'POST',
@@ -38,11 +46,13 @@ class App extends Component {
         headers:{
           'Content-Type': 'application/json'
         }
-      }).then(sync)
+      }
+    ).then(sync)
   }
 
   handleSubmit = event => {
     event.preventDefault()
+    this.clearInputs()
     this.addContact(
       this.state.firstName,
       this.state.lastName,
@@ -51,7 +61,7 @@ class App extends Component {
     )
   }
 
-  handleDelete = (contactId) => {
+  handleDelete = contactId => {
     const sync = () => this.getContacts()
     fetch(
       'http://localhost:3004/contacts/' + contactId, {
@@ -62,7 +72,6 @@ class App extends Component {
       }
     ).then(sync)
   }
-
 
   render() {
     return (
