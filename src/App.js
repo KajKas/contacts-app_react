@@ -38,9 +38,7 @@ class App extends Component {
         headers:{
           'Content-Type': 'application/json'
         }
-      }).then(function () {
-        sync()
-    })
+      }).then(sync)
   }
 
   handleSubmit = event => {
@@ -52,6 +50,19 @@ class App extends Component {
       this.state.email
     )
   }
+
+  handleDelete = (contactId) => {
+    const sync = () => this.getContacts()
+    fetch(
+      'http://localhost:3004/contacts/' + contactId, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    ).then(sync)
+  }
+
 
   render() {
     return (
@@ -67,12 +78,12 @@ class App extends Component {
           {
             this.state.contacts.map(
               contact => (
-                <li>
+                <li key={contact.id}>
                   first name: {contact.firstName},
                   last name: {contact.lastName},
                   phone number: {contact.phoneNumber},
                   email address: {contact.email}
-                  <button>x</button>
+                  <button onClick={() => this.handleDelete(contact.id)}>x</button>
                   <button>edit</button>
                 </li>
               )

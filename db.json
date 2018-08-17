@@ -1,64 +1,53 @@
 {
   "contacts": [
     {
-      "firstName": "Kaj",
-      "lastName": "Kas",
-      "phoneNumber": "666",
-      "email": "dupa@dupa.pl",
+      "firstName": "",
+      "lastName": "",
+      "phoneNumber": "",
+      "email": "",
       "id": 1
     },
     {
-      "firstName": "ja",
-      "lastName": "ty ",
-      "phoneNumber": "33333",
-      "email": "ddd@asd.pl",
+      "firstName": "",
+      "lastName": "",
+      "phoneNumber": "",
+      "email": "",
       "id": 2
     },
     {
-      "firstName": "ddd",
-      "lastName": "aaa",
-      "phoneNumber": "666",
-      "email": "asd@asd.pl",
+      "firstName": "ssss",
+      "lastName": "sss",
+      "phoneNumber": "222",
+      "email": "d@w",
       "id": 3
     },
     {
-      "firstName": "Bruce",
-      "lastName": "Banner",
-      "phoneNumber": "11111",
-      "email": "hulk@smash",
+      "firstName": "ssss",
+      "lastName": "sss",
+      "phoneNumber": "222",
+      "email": "d@w",
       "id": 4
     },
     {
-      "firstName": "Tony",
-      "lastName": "Stark",
-      "phoneNumber": "000000",
-      "email": "iron@man",
+      "firstName": "ssss",
+      "lastName": "sss",
+      "phoneNumber": "222",
+      "email": "d@w",
       "id": 5
     },
     {
+      "firstName": "ssss",
+      "lastName": "sss",
+      "phoneNumber": "222",
+      "email": "d@w",
       "id": 6
     },
     {
+      "firstName": "ssss",
+      "lastName": "sss",
+      "phoneNumber": "222",
+      "email": "d@w",
       "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "firstName": "aaaa",
-      "lastName": "aaaaa",
-      "phoneNumber": "1111",
-      "email": "aaaa@aaa",
-      "id": 12
     }
   ]
 }
