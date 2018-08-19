@@ -8,7 +8,8 @@ class App extends Component {
     lastName: '',
     phoneNumber: '',
     email: '',
-    contacts: []
+    contacts: [],
+    showEditForm: false
   }
 
   componentDidMount() {
@@ -82,6 +83,7 @@ class App extends Component {
       this.state.edPhoneNumber,
       this.state.edEmail
     )
+    this.setState({showEditForm: false})
   }
 
   editContact = (contactId, contactFirstName, contactLastName, contactNumber, contactEmail) => {
@@ -100,10 +102,6 @@ class App extends Component {
         }
       }
     ).then(sync)
-  }
-
-  preventSubmit = event => {
-    event.preventDefault()
   }
 
   render() {
@@ -126,14 +124,16 @@ class App extends Component {
                   phone number: {contact.phoneNumber},
                   email address: {contact.email}
                   <button onClick={() => this.handleDelete(contact.id)}>x</button>
-                  <button>edit</button>
-                  <form onSubmit={this.preventSubmit}>
+                  <button onClick={() => this.setState({showEditForm: true})}>edit</button>
+                  {this.state.showEditForm ? (
+                  <form onSubmit={event => event.preventDefault()}>
                     <input type='text' placeholder='first name' value={this.state.edFirstName} onChange={(event) => this.setState({edFirstName: event.target.value})}/>
                     <input type='text' placeholder='last name' value={this.state.edLastName} onChange={(event) => this.setState({edLastName: event.target.value})}/>
                     <input type='number' placeholder='phone number' value={this.state.edPhoneNumber} onChange={(event) => this.setState({edPhoneNumber: event.target.value})}/>
                     <input type='email' placeholder='email address' value={this.state.edEmail} onChange={(event) => this.setState({edEmail: event.target.value})}/>
                     <button onClick={() => this.handleEdit(contact.id)}>Save</button>
                   </form>
+                  ) : null}
                 </li>
               )
             )
