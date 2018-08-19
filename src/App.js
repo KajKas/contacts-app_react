@@ -102,6 +102,10 @@ class App extends Component {
     ).then(sync)
   }
 
+  preventSubmit = event => {
+    event.preventDefault()
+  }
+
   render() {
     return (
       <div className="App">
@@ -123,7 +127,7 @@ class App extends Component {
                   email address: {contact.email}
                   <button onClick={() => this.handleDelete(contact.id)}>x</button>
                   <button>edit</button>
-                  <form>
+                  <form onSubmit={this.preventSubmit}>
                     <input type='text' placeholder='first name' value={this.state.edFirstName} onChange={(event) => this.setState({edFirstName: event.target.value})}/>
                     <input type='text' placeholder='last name' value={this.state.edLastName} onChange={(event) => this.setState({edLastName: event.target.value})}/>
                     <input type='number' placeholder='phone number' value={this.state.edPhoneNumber} onChange={(event) => this.setState({edPhoneNumber: event.target.value})}/>
