@@ -73,15 +73,14 @@ class App extends Component {
     ).then(sync)
   }
 
-  handleEdit = (contactId, event) => {
-    event.preventDefault()
+  handleEdit = (contactId) => {
     this.clearInputs()
     this.editContact(
       contactId,
-      this.state.firstName,
-      this.state.lastName,
-      this.state.phoneNumber,
-      this.state.email
+      this.state.edFirstName,
+      this.state.edLastName,
+      this.state.edPhoneNumber,
+      this.state.edEmail
     )
   }
 
@@ -123,13 +122,13 @@ class App extends Component {
                   phone number: {contact.phoneNumber},
                   email address: {contact.email}
                   <button onClick={() => this.handleDelete(contact.id)}>x</button>
-                  <button onClick={() => this.handleEdit(contact.id)}>edit</button>
+                  <button>edit</button>
                   <form>
-                    <input type='text' placeholder='first name' value={this.state.firstName} onChange={(event) => this.setState({firstName: event.target.value})}/>
-                    <input type='text' placeholder='last name' value={this.state.lastName} onChange={(event) => this.setState({lastName: event.target.value})}/>
-                    <input type='number' placeholder='phone number' value={this.state.phoneNumber} onChange={(event) => this.setState({phoneNumber: event.target.value})}/>
-                    <input type='email' placeholder='email address' value={this.state.email} onChange={(event) => this.setState({email: event.target.value})}/>
-                    <button>Save</button>
+                    <input type='text' placeholder='first name' value={this.state.edFirstName} onChange={(event) => this.setState({edFirstName: event.target.value})}/>
+                    <input type='text' placeholder='last name' value={this.state.edLastName} onChange={(event) => this.setState({edLastName: event.target.value})}/>
+                    <input type='number' placeholder='phone number' value={this.state.edPhoneNumber} onChange={(event) => this.setState({edPhoneNumber: event.target.value})}/>
+                    <input type='email' placeholder='email address' value={this.state.edEmail} onChange={(event) => this.setState({edEmail: event.target.value})}/>
+                    <button onClick={() => this.handleEdit(contact.id)}>Save</button>
                   </form>
                 </li>
               )
