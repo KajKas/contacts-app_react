@@ -9,7 +9,7 @@ class App extends Component {
     phoneNumber: '',
     email: '',
     contacts: [],
-    showEditForm: false
+    showEditForm: null
   }
 
   componentDidMount() {
@@ -34,7 +34,6 @@ class App extends Component {
   }
 
   addContact = (firstName, lastName, phoneNumber, email) => {
-    const sync = () => this.getContacts()
     fetch(
       'http://localhost:3004/contacts', {
         method: 'POST',
@@ -48,7 +47,7 @@ class App extends Component {
           'Content-Type': 'application/json'
         }
       }
-    ).then(sync)
+    ).then(() => this.getContacts())
   }
 
   handleSubmit = event => {
@@ -63,7 +62,6 @@ class App extends Component {
   }
 
   handleDelete = contactId => {
-    const sync = () => this.getContacts()
     fetch(
       'http://localhost:3004/contacts/' + contactId, {
         method: 'DELETE',
@@ -71,7 +69,7 @@ class App extends Component {
           'Content-Type': 'application/json'
         }
       }
-    ).then(sync)
+    ).then(() => this.getContacts())
   }
 
   handleEdit = (contactId) => {
@@ -89,12 +87,11 @@ class App extends Component {
       edEmail: ''
     })
     this.setState({
-      showEditForm: false
+      showEditForm: null
     })
   }
 
   editContact = (contactId, contactFirstName, contactLastName, contactNumber, contactEmail) => {
-    const sync = () => this.getContacts()
     fetch(
       'http://localhost:3004/contacts/' + contactId, {
         method: 'PATCH',
@@ -108,7 +105,7 @@ class App extends Component {
           'Content-Type': 'application/json'
         }
       }
-    ).then(sync)
+    ).then(() => this.getContacts())
   }
 
   render() {
@@ -131,8 +128,8 @@ class App extends Component {
                   phone number: {contact.phoneNumber},
                   email address: {contact.email}
                   <button onClick={() => this.handleDelete(contact.id)}>x</button>
-                  <button onClick={() => this.setState({showEditForm: true})}>edit</button>
-                  {this.state.showEditForm ? (
+                  <button onClick={() => this.setState({showEditForm: contact.id})}>edit</button>
+                  {this.state.showEditForm === contact.id ? (
                   <form onSubmit={event => event.preventDefault()}>
                     <input type='text' placeholder='first name' value={this.state.edFirstName} onChange={(event) => this.setState({edFirstName: event.target.value})}/>
                     <input type='text' placeholder='last name' value={this.state.edLastName} onChange={(event) => this.setState({edLastName: event.target.value})}/>
