@@ -75,7 +75,6 @@ class App extends Component {
   }
 
   handleEdit = (contactId) => {
-    this.clearInputs()
     this.editContact(
       contactId,
       this.state.edFirstName,
@@ -83,7 +82,15 @@ class App extends Component {
       this.state.edPhoneNumber,
       this.state.edEmail
     )
-    this.setState({showEditForm: false})
+    this.setState({
+      edFirstName: '',
+      edLastName: '',
+      edPhoneNumber: '',
+      edEmail: ''
+    })
+    this.setState({
+      showEditForm: false
+    })
   }
 
   editContact = (contactId, contactFirstName, contactLastName, contactNumber, contactEmail) => {

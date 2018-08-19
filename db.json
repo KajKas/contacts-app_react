@@ -41,20 +41,6 @@
       "phoneNumber": "4",
       "email": "2@2",
       "id": 24
-    },
-    {
-      "firstName": "2222",
-      "lastName": "11",
-      "phoneNumber": "1111",
-      "email": "2@2",
-      "id": 27
-    },
-    {
-      "firstName": "1111",
-      "lastName": "33",
-      "phoneNumber": "",
-      "email": "",
-      "id": 28
     }
   ]
 }
