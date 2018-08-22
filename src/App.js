@@ -19,9 +19,21 @@ class App extends Component {
   getContacts() {
     fetch('http://localhost:3004/contacts')
     .then(response => response.json())
-    .then(contacts => this.setState({
-      contacts: contacts
-    }));
+      .then(data => {
+        const contacts = data.sort(this.sortContacts).map(contact => contact);
+        this.setState({
+          contacts: contacts
+        })
+      })
+  }
+
+  sortContacts = (a, b) => {
+    if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+      return -1;
+    } else if (a.lastName.toLowerCase() > b.lastName.toLowerCase()) {
+      return 1;
+    }
+    return 0;
   }
 
   clearInputs() {
