@@ -18,8 +18,8 @@ class ContactItem extends Component {
   getContacts() {
     fetch('http://localhost:3004/contacts')
       .then(response => response.json())
-      .then(data => {
-        const contacts = data.sort(this.sortContacts).map(contact => contact);
+      .then(contacts => {
+        contacts.sort(this.sortContacts).map(contact => contact);
         this.setState({
           contacts: contacts
         })
