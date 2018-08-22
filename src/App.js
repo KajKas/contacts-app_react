@@ -5,6 +5,10 @@ import ContactItem from './ContactItem'
 class App extends Component {
 
   state = {
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    email: '',
     contacts: [],
     showEditForm: null
   }

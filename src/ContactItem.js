@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class ContactItem extends Component {
 
   state = {
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    email: '',
+    edFirstName: '',
+    edLastName: '',
+    edPhoneNumber: '',
+    edEmail: '',
     contacts: [],
     showEditForm: null
   }
