@@ -38,7 +38,7 @@ class EditForm extends Component {
           <input type='text' placeholder='last name' value={this.state.edLastName} onChange={(event) => this.setState({edLastName: event.target.value})}/>
           <input type='number' placeholder='phone number' value={this.state.edPhoneNumber} onChange={(event) => this.setState({edPhoneNumber: event.target.value})}/>
           <input type='email' placeholder='email address' value={this.state.edEmail} onChange={(event) => this.setState({edEmail: event.target.value})}/>
-          <button onClick={() => this.handleEdit(this.props.contactId)}>Save</button>
+          <button onClick={() => this.props.handleEdit(this.props.contactId)}>Save</button>
         </form>
       ) : null}
       </div>

@@ -4,6 +4,10 @@ import EditForm from "./EditForm";
 class ContactItem extends Component {
 
   state = {
+    edFirstName: '',
+    edLastName: '',
+    edPhoneNumber: '',
+    edEmail: '',
     showEditForm: null
   }
 
@@ -31,6 +35,25 @@ class ContactItem extends Component {
     return 0;
   }
 
+  handleEdit = (contactId) => {
+    this.props.editContact(
+      contactId,
+      this.state.edFirstName,
+      this.state.edLastName,
+      this.state.edPhoneNumber,
+      this.state.edEmail
+    )
+    this.setState({
+      edFirstName: '',
+      edLastName: '',
+      edPhoneNumber: '',
+      edEmail: ''
+    })
+    this.setState({
+      showEditForm: null
+    })
+  }
+
   render() {
     return (
       this.props.contacts.map(
@@ -42,7 +65,7 @@ class ContactItem extends Component {
             email address: {contact.email}
             <button onClick={() => this.props.deleteContact(contact.id)}>x</button>
             <button onClick={() => this.setState({showEditForm: contact.id})}>edit</button>
-            <EditForm showEditForm={this.state.showEditForm} contactId={contact.id} editContact={this.props.editContact}/>
+            <EditForm handleEdit={this.handleEdit} showEditForm={this.state.showEditForm} contactId={contact.id} editContact={this.props.editContact}/>
           </li>
         )
       )
