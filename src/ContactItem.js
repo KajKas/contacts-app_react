@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContactData from "./ContactData";
 
 class ContactItem extends Component {
 
@@ -60,10 +61,12 @@ class ContactItem extends Component {
           this.props.contacts.map(
             contact => (
               <li key={contact.id}>
-                first name: {contact.firstName},
-                last name: {contact.lastName},
-                phone number: {contact.phoneNumber},
-                email address: {contact.email}
+                <ContactData
+                  fName={contact.firstName}
+                  lName={contact.lastName}
+                  pNumber={contact.phoneNumber}
+                  eMail={contact.email}
+                />
                 <button onClick={() => this.props.deleteContact(contact.id)}>x</button>
                 <button onClick={() => this.setState({
                   edFirstName: contact.firstName,
