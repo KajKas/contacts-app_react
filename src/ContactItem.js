@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import EditForm from "./EditForm";
 
 class ContactItem extends Component {
 
@@ -19,7 +18,7 @@ class ContactItem extends Component {
     fetch('http://localhost:3004/contacts')
       .then(response => response.json())
       .then(contacts => {
-        contacts.sort(this.sortContacts);
+        contacts.sort(this.sortContacts).map(contact => contact);
         this.setState({
           contacts: contacts
         })
@@ -56,22 +55,42 @@ class ContactItem extends Component {
 
   render() {
     return (
-      this.props.contacts.map(
-        contact => (
-          <li key={contact.id}>
-            first name: {contact.firstName},
-            last name: {contact.lastName},
-            phone number: {contact.phoneNumber},
-            email address: {contact.email}
-            <button onClick={() => this.props.deleteContact(contact.id)}>x</button>
-            <button onClick={() => this.setState({showEditForm: contact.id})}>edit</button>
-            <EditForm handleEdit={this.handleEdit} showEditForm={this.state.showEditForm} contactId={contact.id} editContact={this.props.editContact}/>
-          </li>
-        )
-      )
+      <ul>
+        {
+          this.props.contacts.map(
+            contact => (
+              <li key={contact.id}>
+                first name: {contact.firstName},
+                last name: {contact.lastName},
+                phone number: {contact.phoneNumber},
+                email address: {contact.email}
+                <button onClick={() => this.props.deleteContact(contact.id)}>x</button>
+                <button onClick={() => this.setState({
+                  edFirstName: contact.firstName,
+                  edLastName: contact.lastName,
+                  edPhoneNumber: contact.phoneNumber,
+                  edEmail: contact.email,
+                  showEditForm: contact.id
+                })}>edit</button>
+                {this.state.showEditForm === contact.id ? (
+                  <form onSubmit={event => {
+                    event.preventDefault();
+                    this.handleEdit(contact.id)
+                  }}>
+                    <input type='text' placeholder='first name' value={this.state.edFirstName} onChange={(event) => this.setState({ edFirstName: event.target.value })} />
+                    <input type='text' placeholder='last name' value={this.state.edLastName} onChange={(event) => this.setState({ edLastName: event.target.value })} />
+                    <input type='number' placeholder='phone number' value={this.state.edPhoneNumber} onChange={(event) => this.setState({ edPhoneNumber: event.target.value })} />
+                    <input type='email' placeholder='email address' value={this.state.edEmail} onChange={(event) => this.setState({ edEmail: event.target.value })} />
+                    <button>Save</button>
+                  </form>
+                ) : null}
+              </li>
+            )
+          )
+        }
+      </ul>
     )
   }
-
 }
 
 export default ContactItem
