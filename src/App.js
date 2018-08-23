@@ -21,7 +21,7 @@ class App extends Component {
     fetch('http://localhost:3004/contacts')
       .then(response => response.json())
       .then(contacts => {
-        contacts.sort(this.sortContacts).map(contact => contact);
+        contacts.sort(this.sortContacts);
         this.setState({
           contacts: contacts
         })
@@ -63,6 +63,34 @@ class App extends Component {
     ).then(() => this.getContacts())
   }
 
+  editContact = (contactId, contactFirstName, contactLastName, contactNumber, contactEmail) => {
+    fetch(
+      'http://localhost:3004/contacts/' + contactId, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          firstName: contactFirstName,
+          lastName: contactLastName,
+          phoneNumber: contactNumber,
+          email: contactEmail
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    ).then(() => this.getContacts())
+  }
+
+  deleteContact = contactId => {
+    fetch(
+      'http://localhost:3004/contacts/' + contactId, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    ).then(() => this.getContacts())
+  }
+
   handleSubmit = event => {
     event.preventDefault()
     this.clearInputs()
@@ -85,7 +113,11 @@ class App extends Component {
           <button>Add</button>
         </form>
         <ul>
-          <ContactItem/>
+          <ContactItem
+            contacts={this.state.contacts}
+            editContact={this.editContact}
+            deleteContact={this.deleteContact}
+          />
         </ul>
       </div>
     )
