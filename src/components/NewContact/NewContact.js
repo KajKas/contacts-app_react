@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styled from 'styled-components'
+import ContactItem from '../ContactItem/ContactItem';
 
 const Input = styled.input`
   height: 20px;
