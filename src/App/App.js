@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import ContactItem from './ContactItem';
-import NewContact from "./NewContact";
+import ContactItem from '../ContactItem/ContactItem';
+import NewContact from "../NewContact/NewContact";
 import './App.css';
 import styled from 'styled-components'
 

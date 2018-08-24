@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ContactData from "./ContactData";
+import ContactData from "../ContactData/ContactData";
 import styled from 'styled-components'
 
 const ListItem = styled.li`
