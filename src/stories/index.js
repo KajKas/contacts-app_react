@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { MemoryRouter } from 'react-router-dom'
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 import App from "../components/App/App";
@@ -50,4 +51,8 @@ storiesOf('ContactItem', module).add('default', () =>
   />
 )
 
-storiesOf('NewContact', module).add('default', () => <NewContact/>)
+storiesOf('NewContact', module)
+  .addDecorator(story => (
+    <MemoryRouter NewContact={['/']}>{story()}</MemoryRouter>
+  ))
+  .add('default', () => <NewContact />)
