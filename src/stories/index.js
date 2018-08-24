@@ -25,25 +25,29 @@ storiesOf('Button', module)
 
 storiesOf('App', module).add('default', () => <App/>)
 
-storiesOf('ContactData', module).add('default', () => <ContactData
-  fName={'bzzzzz'}
-  lName={'dupa'}
-  pNumber={1212121}
-  eMail={'aaaqq@qqa'}
-/>)
+storiesOf('ContactData', module).add('default', () =>
+  <ContactData
+    fName={'bzzzzz'}
+    lName={'dupa'}
+    pNumber={1212121}
+    eMail={'aaaqq@qqa'}
+  />
+)
 
-storiesOf('ContactItem', module).add('default', () => <ContactItem
-  contacts={[
-    {
-      "firstName": "zzz",
-      "lastName": "zzz",
-      "phoneNumber": "77777777",
-      "email": "zzzzzz@zz",
-      "id": 12
-    }
-  ]}
-  editContact={() => {}}
-  deleteContact={() => {}}
-/>)
+storiesOf('ContactItem', module).add('default', () =>
+  <ContactItem
+    contacts={[
+      {
+        "firstName": "zzz",
+        "lastName": "zzz",
+        "phoneNumber": "77777777",
+        "email": "zzzzzz@zz",
+        "id": 12
+      }
+    ]}
+    editContact={() => {}}
+    deleteContact={() => {}}
+  />
+)
 
 storiesOf('NewContact', module).add('default', () => <NewContact/>)
