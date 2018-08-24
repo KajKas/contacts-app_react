@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import ContactItem from './ContactItem'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import ContactItem from './ContactItem';
 import NewContact from "./NewContact";
 import './App.css';
+import styled from 'styled-components'
+
+const MenuItem = styled.li`
+  list-style: none;
+  font-size: 30px;
+  color: blue;
+`;
 
 class App extends Component {
 
@@ -80,36 +87,44 @@ class App extends Component {
   }
 
   render() {
-    // return (
-    //   <div className="App">
-    //     <NewContact addContact={this.addContact}/>
-    //     <ul>
-    //       <ContactItem
-    //         contacts={this.state.contacts}
-    //         editContact={this.editContact}
-    //         deleteContact={this.deleteContact}
-    //       />
-    //     </ul>
-    //   </div>
-    // )
-
     return (
       <Router>
         <div className="App">
           <ul>
-            <li>
+            <MenuItem>
               <Link to="/">Home</Link>
-            </li>
-            <li>
+            </MenuItem>
+            <MenuItem>
               <Link to="/ContactItem">List of contacts</Link>
-            </li>
-            <li>
+            </MenuItem>
+            <MenuItem>
               <Link to="/NewContact">Add a new contact</Link>
-            </li>
+            </MenuItem>
           </ul>
-          <Route exact path="/" render={() => 'This is your contacts app. Use it wisely.'} />
-          <Route path="/ContactItem" component={ContactItem} contacts={this.state.contacts} editContact={this.editContact} deleteContact={this.deleteContact} />
-          <Route path="/NewContact" addContact={this.addContact}  component={NewContact} />
+          <Route
+            exact path="/"
+            render={() =>
+              'This is your contacts app. Use it wisely.'
+            }
+          />
+          <Route
+            path="/ContactItem"
+            render={() => (
+              <ContactItem
+                contacts={this.state.contacts}
+                editContact={this.editContact}
+                deleteContact={this.deleteContact}
+              />
+            )}
+          />
+          <Route
+            path="/NewContact"
+            render={() => (
+              <NewContact
+                addContact={this.addContact}
+              />
+            )}
+          />
         </div>
       </Router>
     )

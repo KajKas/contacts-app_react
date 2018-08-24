@@ -1,5 +1,25 @@
 import React, { Component } from 'react';
 import ContactData from "./ContactData";
+import styled from 'styled-components'
+
+const ListItem = styled.li`
+  list-style: none;
+  font-size: 20px;
+  width: 800px;
+  margin: auto;
+  min-height: 30px;
+`
+const Names = styled.div`
+  float: left;
+`
+
+const Buttons = styled.div`
+  float: right;
+`
+
+const EditForm = styled.form`
+  display: inline-block;
+`
 
 class ContactItem extends Component {
 
@@ -60,14 +80,16 @@ class ContactItem extends Component {
         {
           this.props.contacts.map(
             contact => (
-              <li key={contact.id}>
+              <ListItem key={contact.id}>
+                <Names>
                 <ContactData
                   fName={contact.firstName}
                   lName={contact.lastName}
                   pNumber={contact.phoneNumber}
                   eMail={contact.email}
                 />
-                <button onClick={() => this.props.deleteContact(contact.id)}>x</button>
+                </Names>
+                <Buttons>
                 <button onClick={() => this.setState({
                   edFirstName: contact.firstName,
                   edLastName: contact.lastName,
@@ -75,8 +97,10 @@ class ContactItem extends Component {
                   edEmail: contact.email,
                   showEditForm: contact.id
                 })}>edit</button>
+                <button onClick={() => this.props.deleteContact(contact.id)}>delete</button>
+                </Buttons>
                 {this.state.showEditForm === contact.id ? (
-                  <form onSubmit={event => {
+                  <EditForm onSubmit={event => {
                     event.preventDefault();
                     this.handleEdit(contact.id)
                   }}>
@@ -85,9 +109,9 @@ class ContactItem extends Component {
                     <input type='number' placeholder='phone number' value={this.state.edPhoneNumber} onChange={(event) => this.setState({ edPhoneNumber: event.target.value })} />
                     <input type='email' placeholder='email address' value={this.state.edEmail} onChange={(event) => this.setState({ edEmail: event.target.value })} />
                     <button>Save</button>
-                  </form>
+                  </EditForm>
                 ) : null}
-              </li>
+              </ListItem>
             )
           )
         }
