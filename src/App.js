@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import ContactItem from './ContactItem'
 import NewContact from "./NewContact";
+import './App.css';
 
 class App extends Component {
 
@@ -79,17 +80,38 @@ class App extends Component {
   }
 
   render() {
+    // return (
+    //   <div className="App">
+    //     <NewContact addContact={this.addContact}/>
+    //     <ul>
+    //       <ContactItem
+    //         contacts={this.state.contacts}
+    //         editContact={this.editContact}
+    //         deleteContact={this.deleteContact}
+    //       />
+    //     </ul>
+    //   </div>
+    // )
+
     return (
-      <div className="App">
-        <NewContact addContact={this.addContact}/>
-        <ul>
-          <ContactItem
-            contacts={this.state.contacts}
-            editContact={this.editContact}
-            deleteContact={this.deleteContact}
-          />
-        </ul>
-      </div>
+      <Router>
+        <div className="App">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/ContactItem" contacts={this.state.contacts} editContact={this.editContact} deleteContact={this.deleteContact}>List of contacts</Link>
+            </li>
+            <li>
+              <Link to="/NewContact" addContact={this.addContact}>Add a new contact</Link>
+            </li>
+          </ul>
+          <Route exact path="/" render={() => 'This is your contacts app'} />
+          <Route path="/ContactItem"  component={ContactItem} />
+          <Route path="/NewContact"  component={NewContact} />
+        </div>
+      </Router>
     )
   }
 }
