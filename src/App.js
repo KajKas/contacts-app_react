@@ -101,15 +101,15 @@ class App extends Component {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/ContactItem" contacts={this.state.contacts} editContact={this.editContact} deleteContact={this.deleteContact}>List of contacts</Link>
+              <Link to="/ContactItem">List of contacts</Link>
             </li>
             <li>
-              <Link to="/NewContact" addContact={this.addContact}>Add a new contact</Link>
+              <Link to="/NewContact">Add a new contact</Link>
             </li>
           </ul>
-          <Route exact path="/" render={() => 'This is your contacts app'} />
-          <Route path="/ContactItem"  component={ContactItem} />
-          <Route path="/NewContact"  component={NewContact} />
+          <Route exact path="/" render={() => 'This is your contacts app. Use it wisely.'} />
+          <Route path="/ContactItem" component={ContactItem} contacts={this.state.contacts} editContact={this.editContact} deleteContact={this.deleteContact} />
+          <Route path="/NewContact" addContact={this.addContact}  component={NewContact} />
         </div>
       </Router>
     )
