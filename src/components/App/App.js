@@ -11,6 +11,16 @@ const MenuItem = styled.li`
   color: blue;
 `;
 
+const P = styled.p`
+  font-size: 26px;
+  font-weight: bold;
+  color: blue;
+`
+
+const Ul = styled.ul`
+  padding: 0;
+`
+
 class App extends Component {
 
   state = {
@@ -29,6 +39,7 @@ class App extends Component {
         this.setState({
           contacts: contacts
         })
+        localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
       })
   }
 
@@ -90,7 +101,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <ul>
+          <Ul>
             <MenuItem>
               <Link to="/">Home</Link>
             </MenuItem>
@@ -100,11 +111,11 @@ class App extends Component {
             <MenuItem>
               <Link to="/NewContact">Add a new contact</Link>
             </MenuItem>
-          </ul>
+          </Ul>
           <Route
             exact path="/"
             render={() =>
-              'This is your contacts app. Use it wisely.'
+              <P>This is your contacts app. Use it wisely.</P>
             }
           />
           <Route

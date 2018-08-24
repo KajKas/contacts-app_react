@@ -21,6 +21,10 @@ const EditForm = styled.form`
   display: inline-block;
 `
 
+const Ul = styled.ul`
+  padding: 0;
+`
+
 class ContactItem extends Component {
 
   state = {
@@ -76,7 +80,7 @@ class ContactItem extends Component {
 
   render() {
     return (
-      <ul>
+      <Ul>
         {
           this.props.contacts.map(
             contact => (
@@ -115,7 +119,7 @@ class ContactItem extends Component {
             )
           )
         }
-      </ul>
+      </Ul>
     )
   }
 }
